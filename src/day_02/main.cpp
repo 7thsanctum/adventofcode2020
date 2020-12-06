@@ -50,10 +50,10 @@ void read_input(std::vector<Password>& lines) {
 int part_1(std::vector<Password> data) {
   int valid_passwords = 0;
   // for each password
-  for (auto i = 0; i < data.size(); i++) {
+  for (size_t i = 0; i < data.size(); i++) {
     // for each letter in the password
     int occurence = 0;
-    for (auto j = 0; j < data[i].password.size(); j++) {
+    for (size_t j = 0; j < data[i].password.size(); j++) {
       if (data[i].password[j] == data[i].letter) {
         occurence++;
       }
@@ -68,7 +68,7 @@ int part_1(std::vector<Password> data) {
 int part_2(std::vector<Password> data) {
   int valid_passwords = 0;
   // for each password
-  for (auto i = 0; i < data.size(); i++) {
+  for (size_t i = 0; i < data.size(); i++) {
     int index_1 = data[i].min - 1;
     int index_2 = data[i].max - 1;
     if ((data[i].password[index_1] == data[i].letter) !=

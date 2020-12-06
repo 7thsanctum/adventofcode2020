@@ -21,8 +21,8 @@ void read_input(std::vector<int> &lines) {
 }
 
 int part_1(std::vector<int> data) {
-  for (auto i = 0; i < data.size(); i++) {
-    for (auto j = 0; j < data.size(); j++) {
+  for (size_t i = 0; i < data.size(); i++) {
+    for (size_t j = 0; j < data.size(); j++) {
       p1_checks++;
       if (data[i] + data[j] == 2020) {
         return data[i] * data[j];
@@ -35,15 +35,14 @@ int part_1(std::vector<int> data) {
 }
 
 int part_2(std::vector<int> data) {
-  for (auto i = 0; i < data.size(); i++) {
-    for (auto j = 0; j <  data.size(); j++) {
-      for (auto k = 0; k <  data.size(); k++) {
-      	p2_checks++;
+  for (size_t i = 0; i < data.size(); i++) {
+    for (size_t j = 0; j < data.size(); j++) {
+      for (size_t k = 0; k < data.size(); k++) {
+        p2_checks++;
         if (data[i] + data[j] + data[k] == 2020) {
           return data[i] * data[j] * data[k];
-        }
-        else if (data[i] + data[j] + data[k] > 2020) {
-        	break;
+        } else if (data[i] + data[j] + data[k] > 2020) {
+          break;
         }
       }
     }
@@ -63,5 +62,4 @@ void main() {
 
   std::cout << "part_1 found in : " << p1_checks << std::endl;
   std::cout << "part_2 found in : " << p2_checks << std::endl;
-
 }

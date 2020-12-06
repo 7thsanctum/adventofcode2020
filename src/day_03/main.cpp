@@ -31,7 +31,7 @@ int check_slope(std::vector<std::string> data, int along, int down) {
   int tree_count = 0;
   // slope
   size_t offset = 0;
-  for (auto i = down; i < data.size(); i += down) {
+  for (size_t i = down; i < data.size(); i += down) {
     auto& line = data[i];
     offset += along;
     if (offset >= line.size()) {
