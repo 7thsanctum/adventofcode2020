@@ -1,5 +1,5 @@
-#include <array>
 #include <algorithm>
+#include <array>
 #include <fstream>
 #include <iostream>
 #include <regex>
@@ -47,76 +47,67 @@ cid (Country ID) - ignored, missing or not.
 
 bool validate_field(std::string field, std::string value) {
   try {
-    if(field == "byr") {
+    if (field == "byr") {
       // four digits; at least 1920 and at most 2002.
       int val = stoi(value);
-      if(val < 1920 || val > 2002) {
+      if (val < 1920 || val > 2002) {
         return false;
       }
       return true;
-    }
-    else if(field == "iyr") {
+    } else if (field == "iyr") {
       // four digits; at least 2010 and at most 2020
       int val = stoi(value);
-      if(val < 2010 || val > 2020) {
+      if (val < 2010 || val > 2020) {
         return false;
       }
       return true;
-    }
-    else if(field == "eyr") {
+    } else if (field == "eyr") {
       // four digits; at least 2020 and at most 2030.
       int val = stoi(value);
-      if(val < 2020 || val > 2030) {
+      if (val < 2020 || val > 2030) {
         return false;
       }
       return true;
-    }
-    else if(field == "hgt") {
+    } else if (field == "hgt") {
       // a number followed by either cm or in:
       // If cm, the number must be at least 150 and at most 193.
       // If in, the number must be at least 59 and at most 76.
-      if (std::regex_match (value, std::regex("[0-9]{3}cm"))) {
-        std::string sub = value.substr (0,3);
+      if (std::regex_match(value, std::regex("[0-9]{3}cm"))) {
+        std::string sub = value.substr(0, 3);
         int val = stoi(sub);
-        if(val < 150 || val > 193) {
+        if (val < 150 || val > 193) {
           return false;
         }
 
         return true;
-      }
-      else if (std::regex_match (value, std::regex("[0-9]{2}in"))) {
-        std::string sub = value.substr (0,2);
+      } else if (std::regex_match(value, std::regex("[0-9]{2}in"))) {
+        std::string sub = value.substr(0, 2);
         int val = stoi(sub);
-        if(val < 59 || val > 76) {
+        if (val < 59 || val > 76) {
           return false;
         }
         return true;
       }
-    }
-    else if(field == "hcl") {
+    } else if (field == "hcl") {
       // a # followed by exactly six characters 0-9 or a-f.
-      if (std::regex_match (value, std::regex("#[0-9a-f]{6}") )) {
+      if (std::regex_match(value, std::regex("#[0-9a-f]{6}"))) {
         return true;
       }
-    }
-    else if(field == "ecl") {
+    } else if (field == "ecl") {
       // exactly one of: amb blu brn gry grn hzl oth.
-      if (std::regex_match (value, std::regex("amb|blu|brn|gry|grn|hzl|oth"))) {
+      if (std::regex_match(value, std::regex("amb|blu|brn|gry|grn|hzl|oth"))) {
         return true;
       }
-    }
-    else if(field == "pid") {
+    } else if (field == "pid") {
       // a nine-digit number, including leading zeroes.
-      if (std::regex_match (value, std::regex("[0-9]{9}") )) {
+      if (std::regex_match(value, std::regex("[0-9]{9}"))) {
         return true;
       }
-    }
-    else if(field == "cid") {
+    } else if (field == "cid") {
       // ignored, missing or not.
       return true;
     }
-  }
-  catch(std::exception& e){
+  } catch (std::exception& e) {
     return false;
   }
   return false;
@@ -153,14 +144,13 @@ int test_1(std::vector<std::string> data, bool validate_input) {
     for (auto c : components) {
       for (auto& f : fields) {
         if (f.first == split(c, ':')[0]) {
-          if(validate_input) {
-            if(validate_field(split(c, ':')[0], split(c, ':')[1])) {
+          if (validate_input) {
+            if (validate_field(split(c, ':')[0], split(c, ':')[1])) {
               f.second++;
             }
-          }
-          else {
+          } else {
             f.second++;
-          }          
+          }
         }
       }
     }
@@ -183,7 +173,7 @@ int test_1(std::vector<std::string> data, bool validate_input) {
 
 int part_1(std::vector<std::string> data) { return test_1(data, false); }
 
-int part_2(std::vector<std::string> data) {return test_1(data, true); }
+int part_2(std::vector<std::string> data) { return test_1(data, true); }
 
 void main() {
   std::vector<std::string> test;
