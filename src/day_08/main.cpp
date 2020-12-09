@@ -67,7 +67,7 @@ bool run_instructions(std::vector<std::string> data) {
       }
     }
     if (i == data.size() - 1) {
-      completed == true;
+      completed = true;
       return true;
     } else if (i < 0 || i >= data.size()) {
       repeated = true;
